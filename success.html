@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success - Nepalese Food</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+        .success-page {
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .success-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #4BB543;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            stroke: #4BB543;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+        @keyframes stroke {
+            100% { stroke-dashoffset: 0; }
+        }
+        .order-details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            overflow-x: auto;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #dee2e6;
+            min-width: min-content;
+        }
+        .order-item > span {
+            padding: 0 0.5rem;
+            white-space: nowrap;
+        }
+        .order-item > span:first-child {
+            flex: 1;
+            white-space: normal;
+        }
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        .total-amount {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px dashed #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .delivery-info {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #e8f5e9;
+            border-radius: 10px;
+            border-left: 4px solid #4BB543;
+        }
+        .delivery-time {
+            font-size: 1.1rem;
+            color: #2e7d32;
+            margin-top: 0.5rem;
+        }
+        .btn-home {
+            background: #4BB543;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+        .btn-home:hover {
+            background: #429a3d;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(75, 181, 67, 0.3);
+            color: white;
+        }
+        .customer-info {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .customer-info p {
+            margin-bottom: 0.5rem;
+            color: #495057;
+            word-break: break-word;
+        }
+        .order-id {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .action-buttons {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .action-buttons .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        @media (max-width: 576px) {
+            .success-container {
+                padding: 1.5rem;
+            }
+            .action-buttons {
+                flex-direction: column;
+            }
+            .action-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="success-page">
+    <div class="container">
+        <div class="success-container animate__animated animate__fadeIn">
+            <div class="success-icon animate__animated animate__bounceIn">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+            <h1 class="text-center mb-3 animate__animated animate__fadeInUp">Order Placed Successfully!</h1>
+            <p class="text-center text-muted mb-4 animate__animated animate__fadeInUp animate__delay-1s">
+                Thank you for your order. Your delicious food will be delivered soon!
+            </p>
+            
+            <div class="order-details animate__animated animate__fadeInUp animate__delay-2s">
+                <p class="order-id" id="orderId"></p>
+                <div id="orderItems">
+                    <!-- Order items will be inserted here -->
+                </div>
+                <div class="total-amount" id="orderTotal"></div>
+            </div>
+
+            <div class="delivery-info animate__animated animate__fadeInUp animate__delay-3s">
+                <h5>Delivery Information</h5>
+                <div id="customerInfo" class="customer-info">
+                    <!-- Customer info will be inserted here -->
+                </div>
+                <div class="delivery-time" id="deliveryTime"></div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="downloadOrder" class="btn btn-outline-success animate__animated animate__fadeInUp animate__delay-4s">
+                    <span class="material-icons-round">download</span>
+                    Download Order Details
+                </button>
+                <a href="index.html" class="btn btn-home animate__animated animate__fadeInUp animate__delay-4s">
+                    <span class="material-icons-round">home</span>
+                    Return to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="success.js"></script>
+</body>
+</html>
